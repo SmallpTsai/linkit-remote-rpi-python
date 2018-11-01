@@ -23,11 +23,12 @@ def _int2raw(v):
 
 def _bytes2raw(v):
     l = len(v)
-    return struct.pack('{}b'.format(l), *v)
+    return struct.pack('{}B'.format(l), *v)
 
 def _str2raw(v):
-    l = len(v)
-    return struct.pack('{}b'.format(l), *map(ord, v))
+    if type(v) == str:
+        v = v.encode("utf8")
+    return v
 
 #
 #
